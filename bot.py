@@ -16,7 +16,16 @@ bot = telebot.TeleBot(token)
 
 
 def get_text_messages(message):
-    raspisanie = open('H:\Demio\\botrasp.png', 'rb')
+    sched = """ 
+    1 урок - |08:30 - 09:10|
+    2 урок - |09:30 - 10:10| 
+    3 урок - |10:30 - 11:10|
+    4 урок - |11:25 - 12:05|
+    5 урок - |12:15 - 12:55|
+    6 урок - |13:15 - 13:55|
+    7 урок - |14:10 - 14:50|
+    """
+
     if message.text == "/start":
         bot.send_message(message.from_user.id, 'Привет! Это телеграмм чат-бот, который помогает следить за звонками и не опаздывать на уроки.')
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -24,7 +33,7 @@ def get_text_messages(message):
         keyboard.add(*buttons)
         bot.send_message(message.chat.id,'Выберите, что Вам нужно:', reply_markup=keyboard)
     if message.text == 'Расписание':
-        bot.send_photo(message.chat.id, raspisanie)
+        bot.send_message(message.chat.id, '' + sched)
 
     def text():
         bot.send_message(message.from_user.id, 'Звонок через 5 минут')
@@ -56,7 +65,7 @@ def date_checker():
 def schedule_checker():
     while True:
         schedule.run_pending()
-        time.sleep(1)
+        time.sleep(10)
 
 
 
